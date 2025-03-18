@@ -80,7 +80,7 @@ The goal of this assessment is to evaluate your Angular skills, including:
     * Defines the following routes:
         * `/products`: Maps to the `ProductListComponent`.
         * `/products/:id`: Maps to the `ProductDetailComponent`, where `:id` is a route parameter to identify a specific product.
-
+  
 * **`ProductListComponent`:**
     * When the "View Details" button in a `ProductCardComponent` is clicked, the emitted event is handled.
     * The `ProductListComponent` uses the `Router` service to navigate to the `/products/:id` route, passing the `id` of the selected product.
