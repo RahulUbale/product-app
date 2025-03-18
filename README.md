@@ -128,7 +128,7 @@ The `screenshots` directory in the project root contains images demonstrating th
 ### Product Detail Page - Mobile View
 ![Product Detail Page - 2](screenshots/2.1.png)
 
-### Product Detail Page - Mobile View
+### Product Detail Page 
 ![Product Detail Page - Mobile View](screenshots/2.png)
 
 ### Product Buy
@@ -138,7 +138,15 @@ The `screenshots` directory in the project root contains images demonstrating th
 
 Follow these steps to run the Angular application on your local machine:
 
-1.  **Ensure Node.js and npm (or yarn) are installed:**
+1.  **Clone the repository:**
+    First, you need to clone the project repository to your local machine using Git. Open your terminal or command prompt and navigate to the directory where you want to store the project, then run the following command (replace `<repository_url>` with the actual URL of your Git repository):
+    ```bash
+    git clone <repository_url>
+    cd product-app
+    ```
+    This will download the project files to a folder named `product-app`.
+
+2.  **Ensure Node.js and npm (or yarn) are installed:**
     You can check if they are installed by running the following commands in your terminal:
     ```bash
     node -v
@@ -148,7 +156,7 @@ Follow these steps to run the Angular application on your local machine:
     ```
     If not installed, you can download them from [https://nodejs.org/](https://nodejs.org/).
 
-2.  **Install Angular CLI:**
+3.  **Install Angular CLI:**
     If you haven't already, install the Angular CLI globally:
     ```bash
     npm install -g @angular/cli
@@ -156,27 +164,31 @@ Follow these steps to run the Angular application on your local machine:
     yarn global add @angular/cli
     ```
 
-3.  **Navigate to the project directory:**
-    Open your terminal or command prompt and navigate to the root directory of the `product-app` project.
+4.  **Navigate to the project directory:**
+    If you haven't already, navigate into the project directory that was created when you cloned the repository:
+    ```bash
+    cd product-app
+    ```
 
-4.  **Install project dependencies:**
-    Run the following command to install the necessary npm packages, including `@angular/common` and `@angular/http` (if not already included by default, though `@angular/common/http` is the standard):
+5.  **Install project dependencies:**
+    Run the following command to install the necessary npm packages, including `@angular/common/http` (for making API calls):
     ```bash
     npm install
     # or
     yarn install
     ```
+    This command reads the `package.json` file and downloads all the dependencies listed there.
 
-5.  **Start the development server:**
+6.  **Start the development server:**
     Use the Angular CLI to build and serve the application:
     ```bash
     ng serve -o
     # or
     yarn start
     ```
-    The `-o` flag will automatically open the application in your default web browser.
+    The `-o` flag will automatically open the application in your default web browser once it's built and running.
 
-6.  **Access the application:**
+7.  **Access the application:**
     Once the development server is running, you can access the application in your browser at `http://localhost:4200/`.
 
 ## Navigation
