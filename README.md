@@ -4,16 +4,16 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Overview
 
-This Angular application displays a list of products, allows users to view detailed information about each product, and includes basic navigation between pages. It demonstrates the use of component-based architecture, services, routing, and basic data handling in Angular.
+This Angular application displays a list of products fetched from the [FakeStoreAPI](https://fakestoreapi.com/) ([https://fakestoreapi.com/docs](https://fakestoreapi.com/docs)), allows users to view detailed information about each product, and includes basic navigation between pages. It demonstrates the use of component-based architecture, services, routing, and API integration in Angular.
 
 ## Objectives
 
 The goal of this assessment is to evaluate your Angular skills, including:
 
 * Component-based architecture
-* Services for data management
+* Services for data management and API interaction
 * Routing for navigation
-* Basic API integration (using mock data in this case)
+* Integration with a RESTful API (FakeStoreAPI)
 * Use of Observables (RxJS) for asynchronous operations
 * Following Angular best practices
 
@@ -40,9 +40,10 @@ The goal of this assessment is to evaluate your Angular skills, including:
     │   ├── services/
     │   │   └── product.service.*
     │   ├── app-routing.module.ts
-    │   └── app.component.*
+    │   ├── app.component.*
     ├── assets/
     ├── environments/
+    ├── screenshots/  <-- Screenshots of the application
     └── ...
     ```
 
@@ -56,23 +57,32 @@ The goal of this assessment is to evaluate your Angular skills, including:
 ## Component & Data Binding (30 points)
 
 * **`ProductCardComponent`:** Located in `src/app/components/product-card/`.
-    * Displays product details (name, price, description).
+    * Displays product details (name, price, description, and potentially an image).
     * Accepts a `product` object via the `@Input()` decorator.
     * Includes a "View Details" button that emits a `viewDetails` event via the `@Output()` decorator when clicked.
 
 * **Usage in `ProductListComponent`:** The `ProductCardComponent` is used within the `ProductListComponent` to display individual product information.
 
-## Service & Data Handling (30 points)
+## Service & Data Handling & API Integration (30 points)
 
 * **`ProductService`:** Located in `src/app/services/`.
-    * Provides product data. In this assessment, the data is either hardcoded or fetched from a mock JSON file (`src/assets/data.json`).
-    * Includes a method (e.g., `getProducts()`) that fetches the product data.
-    * Utilizes `Observable` from RxJS to handle the asynchronous nature of data fetching (even with mock data for consistency and demonstrating understanding).
+    * Interacts with the **FakeStoreAPI** ([https://fakestoreapi.com/](https://fakestoreapi.com/)) to fetch product data.
+    * Uses the `HttpClient` module to make HTTP requests.
+    * Includes methods to:
+        * Fetch all products (e.g., `getProducts()`).
+        * Fetch a single product by ID (e.g., `getProductById(id: number)`).
+    * Utilizes `Observable` from RxJS to handle the asynchronous nature of API calls.
 
 * **`ProductListComponent`:** Located in `src/app/components/product-list/`.
     * Injects the `ProductService`.
-    * Calls the `getProducts()` method from the service to retrieve the list of products.
+    * Calls the `getProducts()` method from the service to retrieve the list of products from the API.
     * Displays the products using the `ProductCardComponent` and iterates through the product list using `*ngFor`.
+
+* **`ProductDetailComponent`:** Located in `src/app/components/product-detail/`.
+    * Injects the `ProductService` and `ActivatedRoute`.
+    * Retrieves the `id` from the route parameters.
+    * Calls the `getProductById()` method of the `ProductService` to fetch the details of the specific product from the API.
+    * Displays the detailed information of the selected product.
 
 ## Routing & Navigation (30 points)
 
@@ -80,15 +90,29 @@ The goal of this assessment is to evaluate your Angular skills, including:
     * Defines the following routes:
         * `/products`: Maps to the `ProductListComponent`.
         * `/products/:id`: Maps to the `ProductDetailComponent`, where `:id` is a route parameter to identify a specific product.
-  
+
 * **`ProductListComponent`:**
     * When the "View Details" button in a `ProductCardComponent` is clicked, the emitted event is handled.
     * The `ProductListComponent` uses the `Router` service to navigate to the `/products/:id` route, passing the `id` of the selected product.
 
-* **`ProductDetailComponent`:** Located in `src/app/components/product-detail/`.
+* **`ProductDetailComponent`:**
     * Injects the `ActivatedRoute` to access the `id` parameter from the URL.
-    * Uses the `ProductService` to fetch the details of the product with the given `id`.
+    * Uses the `ProductService` to fetch the details of the product with the given `id` from the API.
     * Displays the detailed information of the selected product.
+
+## Screenshots
+
+The `screenshots` directory in the project root contains images demonstrating the application's user interface and functionality. You can refer to these images to get a visual understanding of the application's different views:
+
+* `screenshots/1.png`: [Brief description of what this screenshot shows, e.g., Product List Page]
+* `screenshots/11.png`: [Brief description]
+* `screenshots/12.png`: [Brief description]
+* `screenshots/13.png`: [Brief description]
+* `screenshots/2.1.png`: [Brief description]
+* `screenshots/2.png`: [Brief description, e.g., Product Detail Page]
+* `screenshots/3.png`: [Brief description]
+
+Please replace the bracketed descriptions above with the actual content of each screenshot.
 
 ## Running the Application Locally
 
@@ -116,7 +140,7 @@ Follow these steps to run the Angular application on your local machine:
     Open your terminal or command prompt and navigate to the root directory of the `product-app` project.
 
 4.  **Install project dependencies:**
-    Run the following command to install the necessary npm packages:
+    Run the following command to install the necessary npm packages, including `@angular/common` and `@angular/http` (if not already included by default, though `@angular/common/http` is the standard):
     ```bash
     npm install
     # or
@@ -137,8 +161,8 @@ Follow these steps to run the Angular application on your local machine:
 
 ## Navigation
 
-* Navigating to `http://localhost:4200/products` will display the list of products.
-* Clicking the "View Details" button for a product will navigate you to `http://localhost:4200/products/1` (or the corresponding ID of the product), displaying the detailed information for that specific product.
+* Navigating to `http://localhost:4200/products` will display the list of products fetched from the FakeStoreAPI.
+* Clicking the "View Details" button for a product will navigate you to `http://localhost:4200/products/1` (or the corresponding ID of the product), displaying the detailed information for that specific product fetched from the FakeStoreAPI.
 
 ## Submission
 
