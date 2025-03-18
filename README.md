@@ -113,14 +113,26 @@ The goal of this assessment is to evaluate your Angular skills, including:
 
 The `screenshots` directory in the project root contains images demonstrating the application's user interface and functionality. You can refer to these images to get a visual understanding of the application's different views:
 
+* `screenshots/11.png`: Product List Page - Desktop View
+  ![Product List Page - Desktop View](screenshots/11.png)
 
-* `screenshots/11.png`: [Product List Page :Desktop View]
-* `screenshots/12.png`: [Product List Page :Tablet View]
-* `screenshots/13.png`: [Product List Page :Mobile View]
-* `screenshots/1.png`: [Product Detail Page:Desktop View, Tablet View]
-* `screenshots/2.1.png`: [Product Detail Page:Mobile View]
-* `screenshots/2.png`: [Product Detail Page:Mobile View]
-* `screenshots/3.png`: [Product Buy]
+* `screenshots/12.png`: Product List Page - Tablet View
+  ![Product List Page - Tablet View](screenshots/12.png)
+
+* `screenshots/13.png`: Product List Page - Mobile View
+  ![Product List Page - Mobile View](screenshots/13.png)
+
+* `screenshots/1.png`: Product Detail Page - Desktop and Tablet View
+  ![Product Detail Page - Desktop and Tablet View](screenshots/1.png)
+
+* `screenshots/2.1.png`: Product Detail Page - Mobile View
+  ![Product Detail Page - Mobile View](screenshots/2.1.png)
+
+* `screenshots/2.png`: Product Detail Page - Mobile View (Note: You have two entries for Mobile View, ensure this is intentional)
+  ![Product Detail Page - Mobile View](screenshots/2.png)
+
+* `screenshots/3.png`: Product Buy
+  ![Product Buy](screenshots/3.png)
 
 Please replace the bracketed descriptions above with the actual content of each screenshot.
 
