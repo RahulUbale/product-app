@@ -1,0 +1,23 @@
+<div *ngIf="product$ | async as product" class="product-detail">
+  <div class="product-detail-container">
+    <!-- Left Section - Product Image -->
+    <div class="product-image">
+      <img [src]="product.image" alt="{{ product.title }}" />
+    </div>
+
+    <!-- Right Section - Product Info -->
+    <div class="product-info">
+      <h2>{{ product.title }}</h2>
+      <p class="price">💲{{ product.price }}</p>
+      <p class="category">📦 Category: <strong>{{ product.category }}</strong></p>
+      <p class="description">{{ product.description }}</p>
+
+      <!-- Buy Now Button with Angular (click) Event Binding -->
+      <button class="buy-now" (click)="onBuyNowClick(product)">
+        🛒 Buy Now
+      </button>
+
+      <a routerLink="/products" class="back-btn">🔙 Back to Products</a>
+    </div>
+  </div>
+</div>

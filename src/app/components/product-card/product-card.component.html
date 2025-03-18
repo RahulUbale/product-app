@@ -1,0 +1,6 @@
+<div class="product-card">
+  <img [src]="product.image" alt="{{ product.title }}" style="max-width: 100px;"/>
+  <h3>{{ product.title }}</h3>
+  <p>Price: ${{ product.price }}</p>
+  <button (click)="onViewDetails()">View Details</button>
+</div>
