@@ -1,103 +1,147 @@
-Here’s a concise README.md for your Angular project:
+# ProductApp - Angular Assessment
 
-markdown
-Copy
-Edit
-# ProductApp
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3. It showcases an Angular application with components, routing, and basic API integration to display a list of products with detailed information.
+## Overview
 
-## Objective
-The goal of this project is to demonstrate Angular skills, including component-based architecture, services, routing, and basic data binding. It features:
-- A product list with details.
-- Basic navigation between product list and product details.
-- Usage of Angular services for fetching and displaying data.
+This Angular application displays a list of products, allows users to view detailed information about each product, and includes basic navigation between pages. It demonstrates the use of component-based architecture, services, routing, and basic data handling in Angular.
 
-## Setup Instructions
+## Objectives
 
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) and [Angular CLI](https://angular.io/cli) installed on your machine.
+The goal of this assessment is to evaluate your Angular skills, including:
 
-### 1. Clone the Repository
-Clone the project to your local machine:
+* Component-based architecture
+* Services for data management
+* Routing for navigation
+* Basic API integration (using mock data in this case)
+* Use of Observables (RxJS) for asynchronous operations
+* Following Angular best practices
 
-```bash
-git clone https://github.com/your-repository-link.git
-cd product-app
-2. Install Dependencies
-Run the following command to install required dependencies:
+## Project Setup (10 points)
 
-bash
-Copy
-Edit
-npm install
-3. Run the Application
-After installing dependencies, you can start the application:
+1.  **Create a new Angular project:**
+    ```bash
+    ng new product-app
+    cd product-app
+    ```
 
-bash
-Copy
-Edit
-ng serve
-This will start the application on http://localhost:4200/.
+2.  **Set up a clean folder structure:**
+    The application structure generally follows the Angular CLI defaults, with key components organized within the `src/app` directory. You will find the following structure (or similar):
+    ```
+    src/
+    ├── app/
+    │   ├── components/
+    │   │   ├── product-card/
+    │   │   │   └── product-card.component.*
+    │   │   ├── product-detail/
+    │   │   │   └── product-detail.component.*
+    │   │   └── product-list/
+    │   │       └── product-list.component.*
+    │   ├── services/
+    │   │   └── product.service.*
+    │   ├── app-routing.module.ts
+    │   └── app.component.*
+    ├── assets/
+    ├── environments/
+    └── ...
+    ```
 
-4. Project Structure
-The project follows the standard Angular folder structure:
+3.  **Initialize a Git repository and make an initial commit:**
+    ```bash
+    git init
+    git add .
+    git commit -m "Initial commit - Project setup"
+    ```
 
-cpp
-Copy
-Edit
-src/
-  app/
-    components/
-      product-card/
-        product-card.component.ts
-        product-card.component.html
-        product-card.component.css
-    services/
-      product.service.ts
-    pages/
-      product-list/
-        product-list.component.ts
-        product-list.component.html
-        product-list.component.css
-      product-detail/
-        product-detail.component.ts
-        product-detail.component.html
-        product-detail.component.css
-    app-routing.module.ts
-    app.module.ts
-5. Key Features
-ProductCardComponent: Displays individual product details (name, price, description).
-ProductService: Provides mock product data using an Observable (RxJS).
-ProductListComponent: Displays a list of products and navigates to product details on click.
-Routing:
-/products: Displays all products.
-/products/:id: Displays detailed information for the selected product.
-Development Process
-Project Setup: Initialize Angular project using Angular CLI and set up Git repository.
-Components: Create ProductCardComponent to display product details, and use @Input() and @Output() for data binding and event emission.
-Service: Implement ProductService to provide data asynchronously via RxJS.
-Routing: Set up Angular routing for navigation between the product list and product detail pages.
-Testing
-To run tests, use the following command:
+## Component & Data Binding (30 points)
 
-bash
-Copy
-Edit
-ng test
-License
-This project is open source and available under the MIT License.
+* **`ProductCardComponent`:** Located in `src/app/components/product-card/`.
+    * Displays product details (name, price, description).
+    * Accepts a `product` object via the `@Input()` decorator.
+    * Includes a "View Details" button that emits a `viewDetails` event via the `@Output()` decorator when clicked.
 
-For any questions or assistance, please feel free to reach out to the assigned recruiter.
+* **Usage in `ProductListComponent`:** The `ProductCardComponent` is used within the `ProductListComponent` to display individual product information.
 
-vbnet
-Copy
-Edit
+## Service & Data Handling (30 points)
 
-This README provides an overview of your project, setup instructions, project structure, and key features while keeping it brief and easy to follow. Feel free to modify any part based on your repository or preferences!
+* **`ProductService`:** Located in `src/app/services/`.
+    * Provides product data. In this assessment, the data is either hardcoded or fetched from a mock JSON file (`src/assets/data.json`).
+    * Includes a method (e.g., `getProducts()`) that fetches the product data.
+    * Utilizes `Observable` from RxJS to handle the asynchronous nature of data fetching (even with mock data for consistency and demonstrating understanding).
 
+* **`ProductListComponent`:** Located in `src/app/components/product-list/`.
+    * Injects the `ProductService`.
+    * Calls the `getProducts()` method from the service to retrieve the list of products.
+    * Displays the products using the `ProductCardComponent` and iterates through the product list using `*ngFor`.
 
+## Routing & Navigation (30 points)
 
+* **`AppRoutingModule`:** Configured in `src/app/app-routing.module.ts`.
+    * Defines the following routes:
+        * `/products`: Maps to the `ProductListComponent`.
+        * `/products/:id`: Maps to the `ProductDetailComponent`, where `:id` is a route parameter to identify a specific product.
 
+* **`ProductListComponent`:**
+    * When the "View Details" button in a `ProductCardComponent` is clicked, the emitted event is handled.
+    * The `ProductListComponent` uses the `Router` service to navigate to the `/products/:id` route, passing the `id` of the selected product.
 
+* **`ProductDetailComponent`:** Located in `src/app/components/product-detail/`.
+    * Injects the `ActivatedRoute` to access the `id` parameter from the URL.
+    * Uses the `ProductService` to fetch the details of the product with the given `id`.
+    * Displays the detailed information of the selected product.
 
+## Running the Application Locally
+
+Follow these steps to run the Angular application on your local machine:
+
+1.  **Ensure Node.js and npm (or yarn) are installed:**
+    You can check if they are installed by running the following commands in your terminal:
+    ```bash
+    node -v
+    npm -v
+    # or
+    yarn --version
+    ```
+    If not installed, you can download them from [https://nodejs.org/](https://nodejs.org/).
+
+2.  **Install Angular CLI:**
+    If you haven't already, install the Angular CLI globally:
+    ```bash
+    npm install -g @angular/cli
+    # or
+    yarn global add @angular/cli
+    ```
+
+3.  **Navigate to the project directory:**
+    Open your terminal or command prompt and navigate to the root directory of the `product-app` project.
+
+4.  **Install project dependencies:**
+    Run the following command to install the necessary npm packages:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+5.  **Start the development server:**
+    Use the Angular CLI to build and serve the application:
+    ```bash
+    ng serve -o
+    # or
+    yarn start
+    ```
+    The `-o` flag will automatically open the application in your default web browser.
+
+6.  **Access the application:**
+    Once the development server is running, you can access the application in your browser at `http://localhost:4200/`.
+
+## Navigation
+
+* Navigating to `http://localhost:4200/products` will display the list of products.
+* Clicking the "View Details" button for a product will navigate you to `http://localhost:4200/products/1` (or the corresponding ID of the product), displaying the detailed information for that specific product.
+
+## Submission
+
+Please share the link to the source code repository (e.g., GitHub) with your assigned technical recruiter.
+
+Thank you for reviewing this assessment!
