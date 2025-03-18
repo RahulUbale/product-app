@@ -86,10 +86,19 @@ The goal of this assessment is to evaluate your Angular skills, including:
 
 ## Routing & Navigation (30 points)
 
-* **`AppRoutingModule`:** Configured in `src/app/app-routing.module.ts`.
-    * Defines the following routes:
-        * `/products`: Maps to the `ProductListComponent`.
-        * `/products/:id`: Maps to the `ProductDetailComponent`, where `:id` is a route parameter to identify a specific product.
+* **`AppRoutingModule` (or `app.routes.ts`):** Routing configuration is defined in `src/app/app.routes.ts`.
+    * The following routes are configured:
+        ```typescript
+        import { Routes } from '@angular/router';
+        import { ProductListComponent } from './components/product-list/product-list.component';
+        import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+
+        export const routes: Routes = [
+          { path: '', redirectTo: '/products', pathMatch: 'full' },
+          { path: 'products', component: ProductListComponent },
+          { path: 'products/:id', component: ProductDetailComponent },
+        ];
+        ```
 
 * **`ProductListComponent`:**
     * When the "View Details" button in a `ProductCardComponent` is clicked, the emitted event is handled.
@@ -104,13 +113,14 @@ The goal of this assessment is to evaluate your Angular skills, including:
 
 The `screenshots` directory in the project root contains images demonstrating the application's user interface and functionality. You can refer to these images to get a visual understanding of the application's different views:
 
-* `screenshots/1.png`: [Brief description of what this screenshot shows, e.g., Product List Page]
-* `screenshots/11.png`: [Brief description]
-* `screenshots/12.png`: [Brief description]
-* `screenshots/13.png`: [Brief description]
-* `screenshots/2.1.png`: [Brief description]
-* `screenshots/2.png`: [Brief description, e.g., Product Detail Page]
-* `screenshots/3.png`: [Brief description]
+
+* `screenshots/11.png`: [Product List Page :Desktop View]
+* `screenshots/12.png`: [Product List Page :Tablet View]
+* `screenshots/13.png`: [Product List Page :Mobile View]
+* `screenshots/1.png`: [Product Detail Page:Desktop View, Tablet View]
+* `screenshots/2.1.png`: [Product Detail Page:Mobile View]
+* `screenshots/2.png`: [Product Detail Page:Mobile View]
+* `screenshots/3.png`: [Product Buy]
 
 Please replace the bracketed descriptions above with the actual content of each screenshot.
 
